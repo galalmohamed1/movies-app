@@ -1,0 +1,34 @@
+:root{
+  --color-prime:#121829cc;
+  --color-gray-400:#767e94;
+  --color-gray-900:#121829;
+  --color-gray-50:#ebeef5;
+  --color-text-hover:#7c6ef6;
+
+}
+
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+body {
+  font-family: 'Poppins', sans-serif;
+  
+}
+.navbar{
+  background-color: var(--color-prime) !important;
+}
+.text-nav{
+  color:var(--color-gray-400) !important;
+}
+.nav-link:hover{
+  color:var(--color-text-hover) !important;
+}
+.container-fluid{
+  margin-inline: 44px !important;
+}
+.read-the-docs {
+  color: #888;
+}
