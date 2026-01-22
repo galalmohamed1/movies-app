@@ -6,6 +6,11 @@ import Footer from './../components/Footer';
 
 export default function Favorite() {
   const { wishlistItems } = useSelector((state) => state.wishlist);
+  const searchQuery = useSelector((state) => state.search.query); 
+  const filteredData = wishlistItems.filter((item) =>
+    item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.name?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <>
       <div className='mx-auto'>
@@ -16,7 +21,7 @@ export default function Favorite() {
         <SearchInput />
         <p className="mt-3">{wishlistItems.length}  items</p>
         <div className="row g-4 mt-2 ">
-          {wishlistItems.map((item) => (
+          {filteredData.map((item) => (
             <MovieCard key={item.id} data={item} />
           ))}
         </div>
