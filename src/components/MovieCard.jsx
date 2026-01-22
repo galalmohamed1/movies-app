@@ -27,7 +27,7 @@ export default function MovieCard({ data }) {
   }
   return (
     <>
-      <div className="col-lg-3 col-md-4 col-12">
+      <div className="col-lg-3 col-md-4 col-6">
         <div className="rounded-4 cardd border-0 shadow-lg h-100 movie-card">
           <div className="position-relative card-img-container rounded--3 overflow-hidden"
             onClick={() => handelshowdetails(data.id)}>
