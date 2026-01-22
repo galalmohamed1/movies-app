@@ -1,9 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import StarIcon from "../assets/star.svg";
 import Footer from '../components/Footer';
+import { addtocart, removeitems } from '../redux/slice/wishlistSlice';
+import { useEffect } from 'react';
 
 export default function MovieDetails() {
     const selectedData = useSelector((state) => state.selectedMovie.data);
+    const { wishlistItems } = useSelector((state) => state.wishlist);
+    const fav = wishlistItems.some((item) => item.id === selectedData.id);
+    const dispatch = useDispatch();
+    const addfavcard = (pordect) => {
+        dispatch(addtocart(pordect))
+    }
+    const removefavcard = (pordect) => {
+        dispatch(removeitems(pordect))
+    }
+    useEffect(() => {
+        localStorage.setItem(`fav_${selectedData.id}`, JSON.stringify(fav));
+    }, [fav, selectedData.id]);
     return (
         <>
             <div className='justify-content-center d-flex mb-5'>
@@ -47,16 +61,43 @@ export default function MovieDetails() {
                         <p className="mb-4 fw-medium text-gray-400">
                             {selectedData.overview}
                         </p>
-                        <div
-                            className="d-inline-flex align-items-center fw-semibold gap-1 px-2 py-1 rounded-2 mb-4"
-                            style={{
-                                backgroundColor: "rgba(0, 0, 0, 0.6)",
-                                color: "#ffc107",
-                                backdropFilter: "blur(4px)",
-                            }}
-                        >
-                            <img src={StarIcon} alt="StarIcon" />
-                            <span>{selectedData.vote_average.toFixed(1)}</span>
+                        <div className="d-flex justify-content-between">
+                            <div
+                                className="d-inline-flex align-items-center fw-semibold gap-1 px-2 py-1 rounded-2 mb-4"
+                                style={{
+                                    backgroundColor: "rgba(0, 0, 0, 0.6)",
+                                    color: "#ffc107",
+                                    backdropFilter: "blur(4px)",
+                                }}
+                            >
+                                <img src={StarIcon} alt="StarIcon" />
+                                <span>{selectedData.vote_average.toFixed(1)}</span>
+                            </div>
+                            <div
+                                className="me-3 fav"
+                                onClick={() => {
+                                    if (!fav) {
+                                        addfavcard(selectedData);
+                                    } else {
+                                        removefavcard(selectedData);
+                                    }
+                                }}
+                            >
+                                <svg
+                                    width="35"
+                                    height="35"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                        fill={fav ? "#FF0000" : "transparent"}
+                                        stroke="red"
+                                        strokeWidth="1"
+                                    />
+                                </svg>
+                            </div>
                         </div>
 
                         {/* Info */}
