@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 export default function SelectItem() {
   const [select, setSelect] = useState(`All`);
   const [data, setData] = useState([]);
-  const searchQuery = useSelector((state) => state.search.query); 
+  const searchQuery = useSelector((state) => state.search.query);
 
   const handelchange = (e) => {
     setSelect(e);
@@ -65,9 +65,7 @@ export default function SelectItem() {
       </div>
       <div className="row g-4">
         {filteredData.map((e) => (
-          e ?
-            <MovieCard key={e.id} data={e} />
-            : <Imag />
+          <MovieCard key={e.id} data={e} />
         ))}
       </div>
 
