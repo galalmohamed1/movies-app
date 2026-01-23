@@ -68,7 +68,6 @@ export default function SelectItem() {
           <MovieCard key={e.id} data={e} />
         ))}
       </div>
-
     </>
   );
 }

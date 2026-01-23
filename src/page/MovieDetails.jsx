@@ -25,7 +25,7 @@ export default function MovieDetails() {
                     <div className='w-100 h-480 '>
                         <img
                             className='w-100 h-100 rounded-5 object-fit-cover movie'
-                            src={`https://image.tmdb.org/t/p/w500${selectedData?.backdrop_path}`}
+                            src={`https://image.tmdb.org/t/p/w780${selectedData?.backdrop_path}`}
                             alt={selectedData?.original_title}
                         />
                     </div>
